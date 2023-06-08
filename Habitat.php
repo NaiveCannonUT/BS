@@ -31,6 +31,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Clasificacion</th>
                 <th scope="col">Borrar</th>
+                <th scope="col">Actualizar</th>
             </tr>
         </thead>
     <tbody>
@@ -51,6 +52,11 @@
                 <td>
                             <a href="Delete/eliminar_habitat.php?id_habitat=<?php echo $fila['id_habitat']; ?>">
                                 <i class="bi bi-trash2-fill text-danger" style="font-size: 1.5rem;"></i>
+                            </a>
+                            </td>
+                                <td>
+                            <a href="update/habit.php?id_habitat=<?php echo $fila['id_habitat']; ?>">
+                                <i class="bi bi-pencil-square text-warning" style="font-size: 1.5rem;"></i>
                             </a>
                         </td>
              </tr>

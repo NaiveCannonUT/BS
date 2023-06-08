@@ -85,38 +85,49 @@
                 <th scope="col">Alimentacion</th>
                 <th scope="col">Habitat</th>
                 <th scope="col">Borrar</th>
+                <th scope="col">Actualizar</th>
             </tr>
         </thead>
     <tbody>
         <?php
         include('connection/connection.php');
         $c = 1;
-        $consulta ="";
+        $consulta ="SELECT id_animal, nombre_animal, descripcion_animal, nombre_clasificacion, tipo_alimento, nombre_habitat
+        FROM animal
+        INNER JOIN clasificacion ON animal.id_clasificacion_id = clasificacion.id_clasificacion
+        INNER JOIN alimentacion ON animal.id_alimentacion_id = alimentacion.id_alimentacion
+        INNER JOIN habitat ON animal.id_habitat_id = habitat.id_habitat;";
         $query = mysqli_query($conn, $consulta);
         while($fila = mysqli_fetch_array($query)){ 
-             ?>
-             <tr>
+            ?>
+            <tr>
                 <th scope="row">
-                    <?php echo $c; ?>
+                <?php echo $c; ?>
                 </th>
                 <td>
-                    <?php echo $fila['animal']; ?>
+                    <?php echo $fila['nombre_animal']; ?>
                 </td>
                 <td>
                     <?php echo $fila['descripcion_animal']; ?>
                 </td>
                 <td>
-                    <?php echo $fila['clasificacion']; ?>
+                    <?php echo $fila['nombre_clasificacion']; ?>
                 </td>
                 <td>
-                    <?php echo $fila['alimentacion']; ?>
+                    <?php echo $fila['tipo_alimento']; ?>
                 </td>
                 <td>
-                    <?php echo $fila['habitat']; ?>
+                    <?php echo $fila['nombre_habitat']; ?>
                 </td>
                 <td>
                             <a href="Delete/eliminar_animal.php?id_animal=<?php echo $fila['id_animal']; ?>">
                                 <i class="bi bi-trash2-fill text-danger" style="font-size: 1.5rem;"></i>
+                                </a>
+                                </td>
+                                <td>
+                            <a href="update/ani.php?id_animal=<?php echo $fila['id_animal']; ?>">
+                                <i class="bi bi-pencil-square text-warning" style="font-size: 1.5rem;"></i>
+                            </a>
                             </a>
                         </td>
              </tr>
