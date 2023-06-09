@@ -16,23 +16,72 @@
       integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
       crossorigin="anonymous"
     />
+    <link rel = "stylesheet" href="styles/style.css" />
   </head>
 
-  <body>
+  <body> 
+    <u1 class = "titulo">ARCA DE ANIMALES</u1>
     <header>
       <!-- place navbar here -->
     </header>
     <main>
-
-      <a type="button" class="btn btn-primary btn-lg" href="Clasificacion.php">Clasificacion</a>
-      <a type="button" class="btn btn-success btn-lg" href="Alimentacion.php">Alimentacion</a>
-      <a type="button" class="btn btn-primary btn-lg" href="Habitat.php">Habitat</a>
-      <a type="button" class="btn btn-success btn-lg" href="Animal.php">Animal</a>
+     
+      <div class="row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Clasificaciones</h5>
+              <p class="card-text">Aqui hay clasificaciones de los tipos de animales qie hay</p>
+              <a href="Clasificacion.php" class="btn btn-primary">ir a clasificacion</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Alimentaciones</h5>
+              <p class="card-text">Los tipos de aliemtacion que hay.</p>
+              <a href="Alimentacion.php" class="btn btn-primary">ir a alimentacion</a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-6 mb-3 mb-sm-0">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Habitat</h5>
+              <p class="card-text">Los habitats donde puedes encontrar a los animales</p>
+              <a href="Habitat.php" class="btn btn-primary">ir a habitat</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Animalest</h5>
+              <p class="card-text">Te gustan los animales? Aqui puedes ver los tipos de animales que ecxisten, mira todo lo que hay!!!</p>
+              <a href="Animal.php" class="btn btn-primary">Ir a animales</a>
+            </div>
+          </div>
+        </div>
+      </div>
 
     </main>
     <footer>
       <!-- place footer here -->
     </footer>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<link href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/b-print-2.3.6/sp-2.1.2/datatables.min.css" rel="stylesheet"/>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+
+<script src="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/b-print-2.3.6/sp-2.1.2/datatables.min.js"></script>
+
+<script src="javascript/java.js"></script>
     <!-- Bootstrap JavaScript Libraries -->
     <script
       src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"

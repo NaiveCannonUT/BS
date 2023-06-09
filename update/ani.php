@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Title</title>
+    <title>Actualizar Animal</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -10,6 +10,8 @@
     <!-- Bootstrap CSS v5.2.1 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
 </head>
 
@@ -19,77 +21,102 @@
     </header>
     <main>
 
+
+        
         <?php
-            $id_animal = $_GET['id_animal'];
+        print_r($_POST);
 
-            include('../connection/connection.php');
+        $id_animal = $_GET['id_animal'];
 
-            $consulta = "SELECT*FROM Clasificacion";
-
-            $query = mysqli_query($conn, $consulta);
-
-            $conn -> close();
-            include('../connection/connection.php');
+        include('../connection/connection.php');
 
 
-            $consulta1 = "SELECT id_animal,nombre_animal, descripcion_animal,id_clasificacion_id, nombre_clasificacion
-            AS clasificacion
-            FROM animal
-            INNER JOIN clasificacion
-            ON animal.id_clasificacion_id = clasificacion.id_clasificacion WHERE id_animal = '$id_animal'";
 
-            $query1 = mysqli_query($conn, $consulta1);
-            
-            $fila = mysqli_fetch_array($query1);
-        
-        
+        $consulta1 = "SELECT animal.id_animal,animal.descripcion_animal AS Descripcion, 
+        animal.nombre_animal,animal.id_clasificacion_id, clasificacion.nombre_clasificacion AS Clasificacion,
+        animal.id_alimentacion_id, alimentacion.tipo_alimento AS Alimentacion,
+        animal.id_habitat_id, habitat.nombre_habitat AS Habitat
+        FROM animal
+        INNER JOIN alimentacion ON  animal.id_alimentacion_id = alimentacion.id_alimentacion  
+        INNER JOIN clasificacion ON animal.id_clasificacion_id = clasificacion.id_clasificacion 
+        INNER JOIN habitat ON animal.id_habitat_id = habitat.id_habitat 
+        WHERE  id_animal = '$id_animal'";
+
+
+
+        $query1 = mysqli_query($conn, $consulta1);
+
+        $fila = mysqli_fetch_array($query1)
+
         ?>
 
-<div>
-            <div>
-                <div>
-                </div>
-                <div class="card-body">
-                    <!-- ========== Start formulario ========== -->
-                    <form action="actualizar_animal.php" method="post">
-                        <div class="mb-4">
-                            <label class="form-label">Nombre del animnal</label>
-                            <input name="nombre_animal" value="<?php echo $fila['nombre_animal'] ?>" type="text"
-                                class="form-control" required>
-                        </div>
-                        <div class="mb-4">
-                            <label class="form-label">Descripcion del animal</label>
-                            <input name="descripcion_animal" value="<?php echo $fila['descripcion_animal'] ?>" type="text"
-                                class="form-control" required>
-                        </div>
-                        <div class="mb-4">
-                            <label class="form-label">Clasificacion</label>
-                            <select name="id_clasificacion" class="form-select">
-                                <option value="<?php echo $fila['id_clasificacion_id']; ?>" selected><?php echo $fila['clasificacion'] ?></option>
-                            
-                                <?php
-                                while ($fila = mysqli_fetch_array($query)) {
-                                    ?>
-                                    <option value="<?php echo $fila['id_clasificacion']; ?>"><?php echo $fila['nombre_clasificacion']; ?>
-                                    </option>
-                                
-                                <?php } ?>
-                            </select>
-                        </div>
-                        <div>
-                            <input name="id_animal" value="<?php echo $id_animalo; ?>" type="hidden">
-                        </div>
-                        <button type="submit" class="btn btn-primary">Enviar</button>
-                    </form>
-                    <!-- ========== End formulario ========== -->
-                </div>
+        <!-- ========== Start formulario ========== -->
+        <form action="actualizar_animal.php" method="post">
+            <div class="mb-3">
+                <label class="form-label">Ingresa un animal</label>
+                <input name="nombre_animal" value="<?php echo $fila['nombre_animal']?>" type="text" class="form-control" required>
             </div>
-        </div>
+            <div class="mb-3">
+                <label class="form-label">Descripcion del animal</label>
+                <input name="descripcion_animal" value="<?php echo $fila['Descripcion']?>" type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Clasificacion</label>
+                <select name="id_clasificacion" class="form-select" aria-label="Default select example">
+                    <?php
+                    include('../connection/connection.php');
+                    
+                    $consulta =" SELECT*FROM clasificacion";
 
 
+                    $query = mysqli_query($conn, $consulta);
 
+                    while ($fila = mysqli_fetch_array($query)) {
+                        ?>
+                        <option value="<?php echo $fila['id_clasificacion']; ?>"><?php echo $fila['nombre_clasificacion']; ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Alimentacion</label>
+                <select name="id_alimentacion" class="form-select" aria-label="Default select example">
+                    <?php
+                    include('../connection/connection.php');
+                    
+                    $consulta =" SELECT*FROM alimentacion";
+
+
+                    $query = mysqli_query($conn, $consulta);
+
+                    while ($fila = mysqli_fetch_array($query)) {
+                        ?>
+                        <option value="<?php echo $fila['id_alimentacion']; ?>"><?php echo $fila['tipo_alimento']; ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Habitat</label>
+                <select name="id_habitat" class="form-select" aria-label="Default select example">
+                    <?php
+                    include('../connection/connection.php');
+                    
+                    $consulta =" SELECT*FROM habitat";
+
+
+                    $query = mysqli_query($conn, $consulta);
+
+                    while ($fila = mysqli_fetch_array($query)) {
+                        ?>
+                        <option value="<?php echo $fila['id_habitat']; ?>"><?php echo $fila['nombre_habitat']; ?></option>
+                    <?php } ?>
+                </select>
+            </div>
+            <input type="hidden" name="id_animal" value="<?php echo$fila['id_animal']?>">
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+        </form>
 
         <!-- ========== End formulario ========== -->
+
     </main>
     <footer>
         <!-- place footer here -->
