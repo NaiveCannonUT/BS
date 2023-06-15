@@ -27,7 +27,7 @@
                     <?php
                     include('connection/connection.php');
 
-                    $consulta = "SELECT*FROM clasificacion";
+                    $consulta = "call arcasm32.verClasificacion()";
                     $query = mysqli_query($conn, $consulta);
 
                     while ($fila = mysqli_fetch_array($query)) {
@@ -42,7 +42,7 @@
                     <?php
                     include('connection/connection.php');
 
-                    $consulta = "SELECT*FROM alimentacion";
+                    $consulta = "call arcasm32.verAlimentacion()";
                     $query = mysqli_query($conn, $consulta);
 
                     while ($fila = mysqli_fetch_array($query)) {
@@ -57,7 +57,7 @@
                     <?php
                     include('connection/connection.php');
 
-                    $consulta = "SELECT*FROM habitat";
+                    $consulta = "call arcasm32.verHabitat()";
                     $query = mysqli_query($conn, $consulta);
 
                     while ($fila = mysqli_fetch_array($query)) {
@@ -92,11 +92,7 @@
         <?php
         include('connection/connection.php');
         $c = 1;
-        $consulta ="SELECT id_animal, nombre_animal, descripcion_animal, nombre_clasificacion, tipo_alimento, nombre_habitat
-        FROM animal
-        INNER JOIN clasificacion ON animal.id_clasificacion_id = clasificacion.id_clasificacion
-        INNER JOIN alimentacion ON animal.id_alimentacion_id = alimentacion.id_alimentacion
-        INNER JOIN habitat ON animal.id_habitat_id = habitat.id_habitat ORDER BY id_animal;";
+        $consulta ="call arcasm32.selectAnimales()";
         $query = mysqli_query($conn, $consulta);
         while($fila = mysqli_fetch_array($query)){ 
             ?>
@@ -132,10 +128,7 @@
                         </td>
              </tr>
         <?php $c++; } ?>
-       <!-- DataTables -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<link href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/b-print-2.3.6/sp-2.1.2/datatables.min.css" rel="stylesheet"/>
+        <link href="https://cdn.datatables.net/v/bs5/jq-3.6.0/jszip-2.5.0/dt-1.13.4/b-2.3.6/b-colvis-2.3.6/b-html5-2.3.6/b-print-2.3.6/sp-2.1.2/datatables.min.css" rel="stylesheet"/>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
 
@@ -145,14 +138,11 @@
 
 <script src="javascript/java.js"></script>
     <!-- Bootstrap JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-        </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz" crossorigin="anonymous">
-        </script>
-
+    <script
+      src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+      integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+      crossorigin="anonymous"
+    ></script>
     </tbody>
 </body>
 </html>

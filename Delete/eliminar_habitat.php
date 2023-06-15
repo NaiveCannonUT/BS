@@ -5,8 +5,8 @@
 
     include('../connection/connection.php');
 
-    $consulta = "DELETE FROM habitat
-    WHERE id_habitat = '$id_habitat'";
+    $consulta = "call arcasm32.eliminarHabitat($id_habitat)";
+    //$consulta = "DELETE FROM habita WHERE id_habitat = '$id_habitat'";
 
     $query = mysqli_query($conn,$consulta);
 

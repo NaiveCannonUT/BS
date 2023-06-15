@@ -24,7 +24,7 @@
 
         
         <?php
-        print_r($_POST);
+        //print_r($_POST);
 
         $id_animal = $_GET['id_animal'];
 
@@ -32,15 +32,7 @@
 
 
 
-        $consulta1 = "SELECT animal.id_animal,animal.descripcion_animal AS Descripcion, 
-        animal.nombre_animal,animal.id_clasificacion_id, clasificacion.nombre_clasificacion AS Clasificacion,
-        animal.id_alimentacion_id, alimentacion.tipo_alimento AS Alimentacion,
-        animal.id_habitat_id, habitat.nombre_habitat AS Habitat
-        FROM animal
-        INNER JOIN alimentacion ON  animal.id_alimentacion_id = alimentacion.id_alimentacion  
-        INNER JOIN clasificacion ON animal.id_clasificacion_id = clasificacion.id_clasificacion 
-        INNER JOIN habitat ON animal.id_habitat_id = habitat.id_habitat 
-        WHERE  id_animal = '$id_animal'";
+        $consulta1 = "call arcasm32.p_animal($id_animal);";
 
 
 
@@ -66,7 +58,7 @@
                     <?php
                     include('../connection/connection.php');
                     
-                    $consulta =" SELECT*FROM clasificacion";
+                    $consulta ="call arcasm32.verClasificacion()";
 
 
                     $query = mysqli_query($conn, $consulta);
@@ -83,7 +75,7 @@
                     <?php
                     include('../connection/connection.php');
                     
-                    $consulta =" SELECT*FROM alimentacion";
+                    $consulta ="call arcasm32.verAlimentacion()";
 
 
                     $query = mysqli_query($conn, $consulta);
@@ -100,7 +92,7 @@
                     <?php
                     include('../connection/connection.php');
                     
-                    $consulta =" SELECT*FROM habitat";
+                    $consulta ="call arcasm32.verHabitat()";
 
 
                     $query = mysqli_query($conn, $consulta);
@@ -111,7 +103,7 @@
                     <?php } ?>
                 </select>
             </div>
-            <input type="hidden" name="id_animal" value="<?php echo$fila['id_animal']?>">
+            <input name="id_animal" value="<?php echo $id_animal; ?>" type="hidden">
             <button type="submit" class="btn btn-primary">Actualizar</button>
         </form>
 

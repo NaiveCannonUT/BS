@@ -21,13 +21,13 @@
         <!-- ========== Start formulario ========== -->
 
         <?php
-            print_r($_GET);
+            //print_r($_GET);
 
             $id_clasificacion = $_GET['id_clasificacion'];
 
             include('../connection/connection.php');
 
-            $consulta = "SELECT*FROM clasificacion WHERE id_clasificacion = '$id_clasificacion'";
+            $consulta = "call arcasm32.p_clasificacion('$id_clasificacion')";
 
             $query = mysqli_query($conn,$consulta);
 

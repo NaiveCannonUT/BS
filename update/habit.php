@@ -21,13 +21,13 @@
         <!-- ========== Start formulario ========== -->
 
         <?php
-            print_r($_GET);
+            //print_r($_GET);
 
             $id_habitat = $_GET['id_habitat'];
 
             include('../connection/connection.php');
 
-            $consulta = "SELECT*FROM habitat WHERE id_habitat = '$id_habitat'";
+            $consulta = "call arcasm32.p_habitat('$id_habitat')";
 
             $query = mysqli_query($conn,$consulta);
 

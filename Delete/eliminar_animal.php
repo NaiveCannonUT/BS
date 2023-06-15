@@ -5,8 +5,8 @@
 
     include('../connection/connection.php');
 
-    $consulta = "DELETE FROM animal
-    WHERE id_animal = '$id_animal'";
+    $consulta = "call arcasm32.eliminarAnimal($id_animal)";
+    //$consulta = "DELETE FROM animal WHERE id_animal = '$id_animal'";
 
     $query = mysqli_query($conn,$consulta);
 

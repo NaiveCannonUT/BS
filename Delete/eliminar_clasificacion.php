@@ -5,8 +5,8 @@
 
     include('../connection/connection.php');
 
-    $consulta = "DELETE FROM clasificacion
-    WHERE id_clasificacion = '$id_clasificacion'";
+    $consulta = "call arcasm32.eliminarClasifiocacion($id_clasificacion);";
+    //$consulta = "DELETE FROM clasificacion WHERE id_clasificacion = '$id_clasificacion'";
 
     $query = mysqli_query($conn,$consulta);
 

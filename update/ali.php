@@ -21,13 +21,13 @@
         <!-- ========== Start formulario ========== -->
 
         <?php
-            print_r($_GET);
+            //print_r($_GET);
 
             $id_alimentacion = $_GET['id_alimentacion'];
 
             include('../connection/connection.php');
 
-            $consulta = "SELECT*FROM alimentacion WHERE id_alimentacion = '$id_alimentacion'";
+            $consulta = "call arcasm32.p_alimentacion($id_alimentacion);";
 
             $query = mysqli_query($conn,$consulta);
 
